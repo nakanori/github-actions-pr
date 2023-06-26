@@ -46,5 +46,5 @@ jobs:
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body: "Updated license list. 🤖"
+          body: "@${{ github.event.issue.user.login }} Updated license list. 🤖"
         if: ${{ steps.auto-commit-action.outputs.changes_detected == 'true' }}
