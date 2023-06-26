@@ -21,6 +21,7 @@
     "license-checker": "^25.0.1"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2"
+    "lodash.merge": "^4.6.2",
+    "lodash.some": "^4.6.0"
   }
 }

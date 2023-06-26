@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - run: npm i -g yarn
+      - run: npm i -g yarn && yarn install
 
       - name: Check node/yarn version
         run: |
@@ -46,5 +46,5 @@ jobs:
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body: "Updated license list. 🤖"
+          body: "@${{ github.event.pull_request.user.login }} Updated license list. 🤖"
         if: ${{ steps.auto-commit-action.outputs.changes_detected == 'true' }}
