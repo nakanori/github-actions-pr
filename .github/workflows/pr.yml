@@ -1,0 +1,48 @@
+name: UIs License Check
+on:
+  push:
+    pull_request:
+      - "**"
+    paths:
+      - '.github/**'
+      - '*'
+
+jobs:
+  license_check:
+    name: License Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    # if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+      # https://github.com/actions/setup-node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Check node/yarn version
+        run: |
+          set -x
+          node -v
+          yarn -v
+
+      - name: update licenses
+        run: yarn license
+        if: (github.actor != 'dependabot[bot]' || !contains(github.ref, 'dependabot'))
+
+      - name: commit licenses
+        uses: stefanzweifel/git-auto-commit-action@v4
+        id: auto-commit-action
+        with:
+          commit_message: ":memo: Update licenses"
+          file_pattern: licenses.csv
+
+      - name: comment PR
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: "Updated license list. 🤖"
+        if: ${{ steps.auto-commit-action.outputs.changes_detected == 'true' }}
