@@ -1,7 +1,7 @@
 name: UIs License Check
 on:
-  push:
-    pull_request:
+  pull_request:
+    branches:
       - "**"
     paths:
       - '.github/**'
