@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/nakanori/github-actions-pr/issues"
   },
-  "homepage": "https://github.com/nakanori/github-actions-pr#readme"
+  "homepage": "https://github.com/nakanori/github-actions-pr#readme",
+  "devDependencies": {
+    "license-checker": "^25.0.1"
+  },
+  "dependencies": {
+    "lodash.merge": "^4.6.2"
+  }
 }
