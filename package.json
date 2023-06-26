@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "license": "license-checker --csv --out licenses.csv",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
